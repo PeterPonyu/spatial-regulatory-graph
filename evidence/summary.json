@@ -1,0 +1,50 @@
+{
+  "caveats": [
+    "The headline is an internal stability/tiering result, not an independent regulon-discovery validation."
+  ],
+  "claim_gate_evidence": {
+    "ablation": true,
+    "baseline_comparison": true,
+    "failure_modes": true,
+    "license_review": true,
+    "public_data_smoke": true
+  },
+  "claim_scope": "Preliminary evidence that the local evidence-tiering procedure is more stable under four internal shuffle controls than a real isolated external top-edge run on the DLPFC Visium card.",
+  "metrics": {
+    "ablation_validated_edges_after_removing_niche_reweighting": 2,
+    "ablation_validated_edges_original": 6,
+    "external_top_edge_count": 40,
+    "external_top_edge_survival_rate": 0.275,
+    "failure_low_tf_validated_tier_fraction_floor": 0.125,
+    "failure_unidentifiable_edge_fraction": 0.875,
+    "local_validated_tier_edge_count": 6,
+    "local_validated_tier_survival_rate": 1.0,
+    "raw_top_edge_survival_rate": 0.15
+  },
+  "missing_evidence": [
+    "independent_regulon_gt",
+    "non_self_referential_null_collapse_to_zero"
+  ],
+  "project": "spatial-regulatory-graph",
+  "provenance": [
+    {
+      "name": "SpaGRN",
+      "note": "isolated external run emitted generic edge outputs only",
+      "status": "RAN"
+    },
+    {
+      "name": "local tier/shuffle evaluation",
+      "status": "RAN"
+    }
+  ],
+  "schema_version": 1,
+  "validation_bar": {
+    "met": false,
+    "required_for_validated": [
+      "independent regulon ground-truth benchmark such as DoRothEA/cisTarget AUPRC",
+      "negative-control/null protocol that collapses the asserted validated set toward zero rather than reusing the same self-tier rule",
+      "visible public evidence sufficient for non-self-referential validation"
+    ]
+  },
+  "visible_claim_label": "preliminary"
+}

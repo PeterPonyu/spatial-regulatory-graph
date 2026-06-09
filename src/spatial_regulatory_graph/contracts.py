@@ -6,6 +6,7 @@ from enum import Enum
 
 class ClaimStatus(str, Enum):
     LOCKED = "locked"
+    PRELIMINARY = "preliminary"
     REVIEW_READY = "review_ready"
     VALIDATED = "validated"
 

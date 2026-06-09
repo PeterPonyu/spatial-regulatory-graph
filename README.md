@@ -24,9 +24,11 @@ python -m spatial_regulatory_graph.cli claim-status
 
 Commands emit JSON to stdout. Gate commands also write uniform contract outputs under `results/<project>/` via the vendored `results_contract.py`.
 
-## Validation marker
+## Evidence-derived status
 
-`python -m spatial_regulatory_graph.cli claim-status` reads the committed package marker in `src/spatial_regulatory_graph/validation.py` and prints `validated`. It does not require private governance documents to be present.
+`python -m spatial_regulatory_graph.cli claim-status` reads `evidence/summary.json`, derives the public claim label from the visible evidence and stated validation bar, and currently prints `preliminary` plus the missing-evidence list. It does not rely on private governance documents or a hardcoded validation constant.
+
+The current public-safe scope is preliminary: the repository includes real gate metrics, but a non-self-referential independent regulon ground truth and a null that collapses the asserted validated set are still required before any public `validated` label.
 
 ## Citations and references
 
