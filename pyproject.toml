@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spatial-regulatory-graph"
+version = "0.1.0"
+description = "Independent evidence-tiered spatial regulatory graph scaffold"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+spatial-regulatory-graph = "spatial_regulatory_graph.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

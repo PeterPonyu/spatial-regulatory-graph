@@ -1,0 +1,41 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e .
+          python -m pip install pytest ruff==0.15.16 numpy scipy scikit-learn pandas h5py
+      - name: Ruff
+        run: ruff check .
+      - name: Pytest
+        run: pytest -q
+      - name: Claim status
+        run: spatial-regulatory-graph claim-status
+      - name: Brand gate
+        run: bash scripts/check_independence.sh
+      - name: Results contract byte identity
+        run: |
+          python - <<'PY'
+          import hashlib
+          from pathlib import Path
+
+          matches = list(Path("src").glob("*/results_contract.py"))
+          assert len(matches) == 1, matches
+          contract = matches[0]
+          expected = contract.with_suffix(".sha256").read_text(encoding="utf-8").strip().split()[0]
+          observed = hashlib.sha256(contract.read_bytes()).hexdigest()
+          assert observed == expected, (observed, expected)
+          print(observed)
+          PY
